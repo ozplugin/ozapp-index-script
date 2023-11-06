@@ -1,0 +1,717 @@
+@import 'oz_appointmentInfo';
+
+$transition: all .3s ease;
+$font-size: 16px;
+$font-size-mobile: 13px;
+$neu-font:'Montserrat', sans-serif;
+
+body {
+    .oz_container {
+
+        .oz_my_app_block {
+            .oz_user_popup_overlay {
+                max-width:340px;
+            }
+        }
+
+        .oz_hid {
+
+            .oz_hid_carousel {
+                transition: transform .7s ease;
+                will-change: transform;
+                > * {
+                    padding:20px;
+                }
+
+                ul {
+                    padding:0;
+                        li {
+                            &.squaredThree {
+                                label {
+                                    @media (max-width:480px) {
+                                        padding: 5px;
+                                        font-size: $font-size-mobile;
+                                    }
+                                }
+                                input {
+                                    border:0px;
+                                    outline:none;
+                                }
+                            }
+                        }
+                    }
+
+                #timeForm {
+                    .oz_form_wrap {
+                        margin-top:0;
+                        .oz_zapis_info {
+                            @media (max-width:480px) {
+                                margin-left: auto;
+                                margin-right: auto;
+                                width:100%;
+                            }
+                            p:not(.oz_check) {
+                                @media (max-width:480px) {
+                                    font-size: $font-size-mobile;
+                                    line-height: $font-size-mobile + 5;
+                                }
+                            }
+
+                            .oz_recurring_info {
+                                width:100%;
+                            }
+                        }
+
+                        .form_fields {
+                            @media (max-width:480px) {
+                                width:100%;
+                                padding: 0 2px;
+                            }
+                        }
+                    }
+                }
+
+                .oz_branches {
+                    .filial {
+                        .oz_vibor {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            margin-top: 10px;
+                        }
+                    }
+                }
+
+                .oz_employees {
+                    > .oz_btn {
+                        margin-bottom:15px;
+                        text-align: center;
+                        @media (max-width:320px) {
+                            display:block;
+                        }
+                    }
+                }
+
+                .ui-datepicker-inline {
+                    margin:0;
+                }
+
+                .oz_services {
+                        text-align: center;
+                        .oz_cats_title {
+                        text-align: left;
+                        display: block;
+                        }
+                        .usluga {
+                            .oz_serv_content {
+                                img {
+                                    max-width:100%;
+                                }
+                            }
+                        }
+
+                        .oz_multiselect_step {
+                            @media (max-width:480px) {
+                                display:none;
+                            }
+                        }
+                }
+
+            }
+        
+        }
+
+    }
+
+    .oz_multiselect_step_mobile {
+        position: fixed;
+        bottom: -200px;
+        width: 100%;
+        text-align: center;
+        left: 0;
+        padding:10px;
+        transition:$transition;
+        opacity: 0;
+        pointer-events: none;
+
+        &.active {
+            bottom: 0px;
+            opacity: 1;
+            pointer-events: initial;
+        }
+    }
+
+    .oz_link {
+        &:focus {
+            color: #333;
+            fill: #333;
+            border-color: transparent;
+            background: none !important;
+            outline: none !important;
+        }
+    }
+
+}
+
+.oz_deposit_switcher {
+    margin-left: auto;
+    font-size: 12px;
+    align-self: center;
+    margin-left: auto;
+}
+
+.oz_switch_label {
+    margin-right:5px;
+    color: var(--font-color) !important;
+    font-weight: 400 !important;
+}
+
+.oz_switch {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+    vertical-align: top;
+    height: 13px;
+    width: 22px;
+    border-radius: 11px;
+    cursor: pointer;
+    background: #ECEFFC;
+    &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: inherit;
+        background: linear-gradient(90deg, #4F97FF, #275EFE);
+        opacity: 0;
+        transition: opacity .4s;
+    }
+    .oz_switch_dot {
+        background: #D1D6EE;
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        left: -1px;
+        top: -1px;
+        transform: translateX(0);
+        transition: transform .4s, box-shadow .4s;
+        box-shadow: transparent;
+        &:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            background: transparent;
+            opacity: 1;
+            transition: opacity .4s;
+        }
+    }
+
+    &.active {
+        &:before {
+            opacity:1;
+        }
+
+        .oz_switch_dot {
+            transform: translateX(14px);
+            box-shadow: -4px -4px 8px rgba(255, 255, 255, .1), 4px 4px 8px rgba(0, 6, 39, .1);
+            &:before {
+                background: linear-gradient(160deg, #F1F4FF, #F9FAFF);
+            }
+        }
+    }
+}
+
+.oz_zapis_info {
+    margin-bottom:20px;
+}
+
+.oz-form {
+    max-height: 99999px;
+    overflow:hidden;
+
+    &.oz_completed {
+        animation: height .5s ease both;
+    }
+
+    .form_fields { 
+        label {
+            font-size:$font-size;
+            &.oz_cust_checkbox {
+                font-size:$font-size - 1;
+                input {
+                    margin-right:5px;
+                    top:0;
+                    width:$font-size - 1 !important;
+                    height:$font-size - 1 !important;
+                    outline:none;
+                    &::after {
+                        left: 1px;
+                        top: -1px;
+                        width: 6px;
+                        height: 9px;
+                    }
+                }
+            }
+        }
+    }
+
+    .oz_phone_input {
+        height:auto;
+        padding-left: 40px !important;
+        font-size: $font-size;
+    }
+    .react-tel-input {
+        .flag-dropdown {
+            background: none;
+            border: 0px;
+        }
+
+        .selected-flag {
+            outline: none;
+            border-radius: 25px 0 0 25px;
+            .flag {
+                background-color: #ddd;
+            }
+            &.open {
+                background: rgba(0,0,0,.05);
+                border: 1px solid #c9c9ca;
+                border-radius: 25px 0 0 25px;
+            }
+            &:hover, &:focus {
+                background: rgba(0,0,0,.05);
+                border: 1px solid #c9c9ca;
+                border-radius: 25px 0 0 25px;
+            }
+        }
+    } 
+}
+
+.oz_loader {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: rgb(255 255 255 / 53%);
+    z-index:3;
+    svg {
+        circle {
+            fill:#ffd22e;
+        }
+    }
+}
+
+.oz_term_desc {
+    font-size: $font-size;
+}
+
+.oz_employee_section {
+    @media (max-width:480px) {
+        flex-direction: column;
+    }
+    .oz_employee_info {
+        @media (max-width:480px) {
+            width:100%;
+        }
+        .oz_employee_info_wrap {
+            .oz_emp_img {
+                max-width:100%;
+            }
+        
+            .oz_name {
+                @media (max-width:767px) {
+                    font-size: $font-size-mobile;
+                }
+            }
+        }
+    }
+
+    .oz_employee_calendar {
+        @media (max-width:480px) {
+            width:100%;
+        }     
+    }
+}
+
+.rtl {
+    .form_fields { 
+        label {
+            text-align: right;
+            &.oz_cust_checkbox {
+                input {
+                    margin-left: 5px;
+                    margin-right: 0;
+                }
+            }
+        }
+
+        .react-tel-input {
+            .flag-dropdown {
+                right:0;
+                .selected-flag {
+                    border-radius: 0 25px 25px 0;
+                    .arrow {
+                        left:-20px;
+                    }
+                }
+            }
+        }
+    }
+
+    .container-neumorph-theme {
+        .oz_back_btn {
+            &::after{
+                transform: rotate(135deg);
+                left: -16px;
+            }
+        }
+    }
+
+    .container-default-theme {
+        .oz_back_btn {
+            &::after{
+                transform: rotate(-135deg);
+            }
+        }
+    }
+
+    .oz_zapis_info {
+        >p {
+            text-align: right;
+        }
+    }
+
+    .oz_abs_btn {
+        right:initial;
+        left:1.5em;
+    }
+
+    .neumorph-theme {
+        .oz_employees {
+            .personals {
+                .pname, .special {
+                    text-align: right;
+                }
+
+                .oz_text_cont {
+                    text-align: right;
+                }
+
+                .personal {
+                    .pers-content {
+                        .pname.with-description {
+                            &::after {
+                                right: initial;
+                                bottom: 6px;
+                                left: -4px;
+                                transform: rotate(-135deg);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.default-theme {
+    .oz_zapis_info {
+        .oz_amount_info {
+            display:block;
+        }
+    }
+    .oz_switch {
+        border: 1px solid #fff;
+        &:before {
+            background: #4bd662;
+        }
+        &.active {
+            .oz_switch_dot {
+                transform: translateX(11px);
+            }
+        }
+    }
+    .oz-form {
+        .form_fields { 
+            label {
+                &.oz_cust_checkbox {
+                    input {
+                        top: 3px;
+                        &::after {
+                            left: 1px;
+                            top: -1px;
+                            width: 6px;
+                            height: 9px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.neumorph-theme {
+    p {
+        font-family: $neu-font;
+    }
+    .react-tel-input {
+
+        .selected-flag {
+            border-radius: 25px 0 0 25px;
+            border: 1px solid transparent;
+            &.open {
+                border-radius: 10px 0 0 10px;
+            }
+            &:hover, &:focus {
+                border-radius: 10px 0 0 10px;
+            }
+        }
+    }
+
+    .oz_employees {
+        .personals {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: start;
+            .personal {
+                display: flex;
+                flex-direction: column;
+                .pers-content {
+                    height: 100%;
+                    flex-wrap:nowrap;
+                    .pname {
+                        margin-bottom:auto;
+                        padding-bottom:0px;
+                        overflow: hidden;
+                        &.with-description {
+                            position: relative;
+                            &::after {
+                                content: "";
+                                opacity:0.5;
+                                transition: all .3s ease;
+                                position: absolute;
+                                bottom: 2px;
+                                right: -10px;
+                                width: 22px;
+                                height: 2px;
+                                background: var(--accent-color);
+                                transform: rotate(-45deg);
+                                box-shadow: 0px -4px 0px 0px var(--accent-color), 
+                                0px -8px 0px 0px var(--accent-color);
+                            }
+                        }
+                        &:hover {
+                            &::after {
+                                opacity:1;
+                            }
+                        }
+                    }
+                    .oz_text_cont {
+                        margin:0;
+                        position: relative;
+                        .oz_text_cont_wrap {
+                            position: absolute;
+                            top: 0;
+                            left: 0%;
+                            width: 100%;
+                            z-index: 2;
+                            background: var(--main-gradient);
+                            padding: 10px;
+                            border-radius: 10px;
+                            height: auto;
+                            overflow: auto;
+                            max-height: 400px;
+                            box-shadow: var(--card-shadow-hover);
+                            display: none;
+                        }
+                    }
+
+                    .oz_select_btn {
+                        margin-top:20px;
+                    }
+                }
+
+                &.oz_desc_open {
+                    .pers-content {
+                        .pname {
+                            &::after {
+                                opacity: 1;
+                            }
+                        }
+                        .oz_text_cont_wrap {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .oz_services {
+        .oz_cats_title {
+            margin-bottom: 25px;
+            border-bottom: 0;
+        }
+    }
+    
+    #timeForm {
+        .oz_form_wrap {
+            input[type="text"], input[type="tel"], input[type="email"], input.oz_input {
+                margin:0;
+            }
+            @media (max-width:480px) {
+                padding-left: 20px;
+                padding-right: 20px;
+                width: 100%;
+            }
+        }
+    }
+}
+
+.oz_dialog_info_win {
+    .oz_loading {
+        position:relative;
+        height:80px;
+        &::after {
+            width: 64px;
+            height: 64px;
+            margin-left: -32px;
+        }
+    }
+}
+
+.oz_cats_title {
+    display:block;
+    padding:10px 15px;
+    &.cats_open {
+        svg {
+            transform:rotate(180deg)
+        }
+    }
+}
+
+.app_summary {
+	position: fixed;
+    right: 5px;
+    bottom: 20px;
+    background: rgb(255 255 255);
+    padding: 5px;
+    font-size: 12px;
+    list-style: none;
+    opacity:0;
+    max-width: 200px;
+    
+    &:hover {
+        opacity:0.5;
+    }
+}
+
+.oz_label-file {
+    position: relative;
+    input {
+        display: block;
+        margin: 5px 0 20px;
+    }
+}
+
+.oz_uploaded_link {
+    margin-right:5px;
+    margin-bottom: 10px;
+}
+
+.oz_close {
+    width: 10px;
+    height: 10px;
+    opacity: 0.5;
+    transition: all .3s ease;
+    cursor: pointer;
+    svg {
+        fill:#d80000;
+    }
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.oz_loading {
+    &-small {
+        &::after {
+            width:20px;
+            height: 20px;
+            margin-left:-10px;
+        }
+        &-right {
+            &::after {
+                left:initial;
+                right:0;
+                margin-left:0;
+        }
+    }
+    }
+}
+
+.oz_input-label {
+    .react-datepicker-wrapper {
+        display: block;
+    }
+}
+
+.react-datepicker-popper {
+    z-index: 3;
+}
+
+.oz_quick_times {
+    display: flex;
+    flex-wrap: wrap;
+        .oz_quick_time, .oz_quick_more {
+            flex-basis: 22%;
+            background: #fff;
+            padding: 2px 5px;
+            border: 1px solid #f1efe7;
+            border-radius: 4px;
+            color: #585858;
+            cursor: pointer;
+            -webkit-transition: .3s all ease;
+            transition: .3s all ease;
+            margin: 0 1% 5px;
+            &:hover {
+                border-color: darken(#f1efe7, 40%);
+            }
+        }
+}
+
+.oz_quick_slots {
+    .oz_quick_title {
+        text-align: center;
+        font-size: 11px;
+        text-transform: uppercase;
+        line-height: 1.4em;
+        margin: 10px 0 0;
+    }
+
+    .oz_quick_day {
+        p {
+            font-size: 13px;
+            font-weight: bold;
+            margin: 5px 0;
+            text-align: left;
+            padding-left: 3%;
+        }
+    }
+}
+
+
+@keyframes height {
+    to {
+        max-height:0;
+    }
+}
